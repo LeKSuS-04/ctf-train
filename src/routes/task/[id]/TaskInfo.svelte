@@ -52,40 +52,8 @@
 	form {
 		width: 100%;
 	}
-	form input {
-		margin-bottom: 1em;
-		padding: 0.8em 0.6em;
-		width: calc(100% - 1.2em - 4px);
-		border: 2px var(--surface) solid;
-		border-radius: 0.4em;
-		color: var(--text);
-		background-color: transparent;
-		outline: none;
-	}
-	form input::placeholder {
-		color: var(--surface);
-	}
-	form input:focus {
-		transition-duration: 200ms;
-		color: var(--text-accent);
-		border-color: var(--primary);
-	}
 	form button {
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		background-color: var(--surface);
-		color: var(--text);
-		outline: none;
-		border: none;
-		border-radius: 0.4em;
-		padding: 0.8em 0.6em;
-	}
-	form button:hover {
-		transition-duration: 200ms;
-		color: var(--background);
-		background-color: var(--primary);
-		cursor: pointer;
+		margin-top: unset;
 	}
 
 	.go-back {

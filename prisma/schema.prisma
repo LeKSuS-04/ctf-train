@@ -13,9 +13,10 @@ datasource db {
 model User {
   @@map("users")
   id           Int            @id @default(autoincrement())
-  login        String
+  login        String         @unique
   passwordHash String
-  fio          String
+  fio          String?
+  isAdmin      Boolean        @default(false)
   solvedTasks  SolvedTask[]
   groups       GroupsToUsers[]
 }

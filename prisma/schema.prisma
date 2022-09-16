@@ -9,3 +9,67 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  @@map("users")
+  id           Int            @id @default(autoincrement())
+  login        String
+  passwordHash String
+  fio          String
+  solvedTasks  SolvedTask[]
+  groups       GroupsToUsers[]
+}
+
+model Contest {
+  @@map("contests")
+  id          Int               @id @default(autoincrement())
+  name        String
+  description String?
+  isActive    Boolean           @default(false)
+  tasks       ContestsToTasks[]
+}
+
+model Task {
+  @@map("tasks")
+  id          Int               @id @default(autoincrement())
+  name        String
+  cost        Int
+  category    String
+  description String?
+  flag        String
+  isActive    Boolean           @default(false)
+  usersSolves SolvedTask[]
+  contests    ContestsToTasks[] 
+}
+
+model Group {
+  @@map("groups")
+  id    Int             @id @default(autoincrement())
+  name  String?
+  users GroupsToUsers[]
+}
+
+model SolvedTask {
+  @@id([userId, taskId])
+  userId Int
+  user   User     @relation(fields: [userId], references: [id])
+  taskId Int
+  task   Task     @relation(fields: [taskId], references: [id])
+  time   DateTime @default(now())
+}
+
+model GroupsToUsers {
+  @@id([userId, groupId])
+  userId  Int
+  user    User  @relation(fields: [userId], references: [id])
+  groupId Int
+  group   Group @relation(fields: [groupId], references: [id])
+}
+
+model ContestsToTasks {
+  @@id([contestId, taskId])
+  contestId Int
+  contest   Contest @relation(fields: [contestId], references: [id])
+  taskId    Int
+  tasks     Task    @relation(fields: [taskId], references: [id])
+}

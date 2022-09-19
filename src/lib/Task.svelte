@@ -1,45 +1,41 @@
 <script>
-	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faUser, faCoins } from '@fortawesome/free-solid-svg-icons';
+  import Fa from "svelte-fa/src/fa.svelte";
+  import { faUser, faCoins } from "@fortawesome/free-solid-svg-icons";
 
-	export let id;
-	export let name;
-	export let cost;
-	export let isSolved;
-	export let solves;
+  export let id;
+  export let name;
+  export let cost;
+  export let isSolved;
+  export let solves;
 </script>
 
-<a
-	href="/task/{id}"
-	class="base"
-	class:is-solved={isSolved}
-  >
-	<span class="name">{name}</span>
+<a href="/task/{id}" class="base" class:is-solved={isSolved}>
+  <span class="name">{name}</span>
 
-	<div class="cost">
-		<span>{cost}</span>
+  <div class="cost">
+    <span>{cost}</span>
     <Fa icon={faCoins} />
   </div>
   <div class="solves">
-		<span>{solves}</span>
+    <span>{solves}</span>
     <Fa icon={faUser} />
-	</div>
+  </div>
 </a>
 
 <style>
-	.base {
-		display: block;
+  .base {
+    display: block;
     position: relative;
-		color: var(--text-color);
+    color: var(--text-color);
     --blocks-per-row: 1;
-		width: calc(100% / var(--blocks-per-row) - 1em);
-		box-sizing: border-box;
+    width: calc(100% / var(--blocks-per-row) - 1em);
+    box-sizing: border-box;
     aspect-ratio: 4 / 3;
-		background-color: var(--surface);
-		margin: 0.5em;
-		padding: 1em;
-		border-radius: 1em;
-	}
+    background-color: var(--surface);
+    margin: 0.5em;
+    padding: 1em;
+    border-radius: 1em;
+  }
   .base:hover {
     text-decoration: unset;
     background-color: var(--primary);
@@ -50,17 +46,17 @@
     color: var(--primary);
   }
 
-	.name {
+  .name {
     display: flex;
     align-items: center;
     justify-content: center;
-		width: 100%;
+    width: 100%;
     height: calc(100% - 0.5em);
-		font-size: 1.2em;
+    font-size: 1.2em;
     margin: -0.5em 0;
-		text-align: center;
+    text-align: center;
     overflow: hidden;
-	}
+  }
 
   .cost,
   .solves {

@@ -4,5 +4,5 @@
 </script>
 
 {#each data.contests as contest}
-  <Contest {...contest}/>
+  <Contest {...contest} />
 {/each}

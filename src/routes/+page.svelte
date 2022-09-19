@@ -1,14 +1,14 @@
 <svelte:head>
-	<title>MSHP-CTF</title>
+  <title>MSHP-CTF</title>
 </svelte:head>
 
 <section>
-	<h1>Добро пожаловать. Опять.</h1>
-	<h2>Ддосишь нас сегодня, мы ддосим тебя завтра.</h2>
+  <h1>Добро пожаловать. Опять.</h1>
+  <h2>Ддосишь нас сегодня, мы ддосим тебя завтра.</h2>
 </section>
 
 <style>
-	h1 {
-		width: 100%;
-	}
+  h1 {
+    width: 100%;
+  }
 </style>

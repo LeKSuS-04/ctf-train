@@ -1,10 +1,10 @@
 <script>
-	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faFlag, faCoins } from '@fortawesome/free-solid-svg-icons';
+  import Fa from "svelte-fa/src/fa.svelte";
+  import { faFlag, faCoins } from "@fortawesome/free-solid-svg-icons";
 
   export let id;
-  export let name = 'Task name';
-  export let description = 'Task description';
+  export let name = "Task name";
+  export let description = "Task description";
   export let tasksSolved = 0;
   export let totalTasks = 10;
   export let pointsObtained = 0;

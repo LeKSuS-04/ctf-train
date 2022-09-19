@@ -1,16 +1,16 @@
 <script>
-  import Task from '$lib/Task.svelte';
+  import Task from "$lib/Task.svelte";
   export let data;
-  
+
   let categories = new Set();
   let tasksByCategories = {};
 
-  data.tasks.forEach(task => {
+  data.tasks.forEach((task) => {
     const c = task.category;
     categories.add(c);
     tasksByCategories[c] = tasksByCategories[c] || [];
     tasksByCategories[c].push(task);
-  }); 
+  });
 </script>
 
 {#each [...categories] as category}

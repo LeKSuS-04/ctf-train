@@ -1,5 +1,5 @@
-import { invalid, redirect } from "@sveltejs/kit";
-import { createUser, getAccessToken } from "$lib/auth";
+import { invalid } from "@sveltejs/kit";
+import { createUser, getAccessToken, makeApiResponse } from "$lib/auth";
 import { Prisma } from "@prisma/client";
 
 export const actions = {
@@ -17,6 +17,7 @@ export const actions = {
     try {
       const user = await createUser(username, fio, password, false);
       cookies.set("session", await getAccessToken(user));
+      return makeApiResponse(user);
     } catch (e) {
       if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
         return invalid(409, { username, fio, exists: true });
@@ -24,7 +25,5 @@ export const actions = {
         throw e;
       }
     }
-
-    throw redirect(303, "/");
   }
 };

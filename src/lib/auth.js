@@ -1,4 +1,4 @@
-import * as bcrypt from "bcryptjs";
+import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import { prisma } from "$lib/db";
 
@@ -55,4 +55,12 @@ export async function userFromToken(token) {
     }
     throw e;
   }
+}
+
+export function makeApiResponse(user) {
+  return {
+    username: user.username,
+    fio: user.fio,
+    isAdmin: user.isAdmin
+  };
 }

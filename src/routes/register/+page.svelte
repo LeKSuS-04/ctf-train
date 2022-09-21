@@ -1,5 +1,6 @@
 <script>
-  import { enhance } from "$app/forms";
+  import { enhance, applyAction } from "$app/forms";
+  import { user } from "$lib/userStore";
 
   export let form;
 
@@ -8,33 +9,58 @@
       id: "username",
       placeholder: "admin",
       label: "Юзернейм",
-      type: "text"
+      type: "text",
+      autocomplete: "username"
     },
     {
       id: "fio",
       placeholder: "Иванов Иван Иванович",
       label: "ФИО",
-      type: "text"
+      type: "text",
+      autocomplete: "name"
     },
     {
       id: "password",
       placeholder: "wearen0tn00bs",
       label: "Пароль",
-      type: "password"
+      type: "password",
+      autocomplete: "new-password"
     },
     {
       id: "confirm_password",
       placeholder: "andw3canpr00ve1t",
       label: "Подтвердите пароль",
-      type: "password"
+      type: "password",
+      autocomplete: "new-password"
     }
   ];
+
+  function register({ data, cancel }) {
+    const password = data.get("password");
+    const confirmPassword = data.get("confirm_password");
+    if (password !== confirmPassword) {
+      // HACK: At first submition, form won't be initialized
+      // with data from previous requests
+      if (form === null) form = {};
+
+      form.passwordsDontMatch = true;
+      cancel();
+    }
+
+    return async ({ result }) => {
+      if (result.type === "success") {
+        await user.login(result.data);
+      } else {
+        applyAction(result);
+      }
+    };
+  }
 </script>
 
 <section>
   <h1>Регистрация</h1>
-  <form method="POST" use:enhance>
-    {#each fields as field}
+  <form method="POST" use:enhance={register}>
+    {#each fields as field (field.id)}
       <section>
         <label for={field.id}>{field.label}</label>
         <input {...field} name={field.id} value={form ? form[field.id] ?? "" : ""} />
@@ -42,7 +68,9 @@
     {/each}
 
     {#if form}
-      {#if form.missing}
+      {#if form.passwordsDontMatch}
+        <span class="error">Указанные пароли не совпадают</span>
+      {:else if form.missing}
         <span class="error">Необходимо заполнить все поля</span>
       {:else if form.exists}
         <span class="error">Пользователь с таким именем уже зарегистрирован</span>

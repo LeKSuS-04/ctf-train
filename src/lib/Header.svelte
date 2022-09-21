@@ -1,9 +1,5 @@
 <script>
   import { user } from "$lib/userStore";
-
-  async function logout() {
-    await fetch("/logout", { method: "POST" });
-  }
 </script>
 
 <header>
@@ -20,7 +16,7 @@
         <li><span class="username">{$user.username}</span></li>
         <li><a href="/settings">Настройки</a></li>
         <!-- svelte-ignore a11y-missing-attribute -->
-        <li><a on:click|preventDefault={logout}>Выйти</a></li>
+        <li><a on:click|preventDefault={user.logout}>Выйти</a></li>
       {:else}
         <li><a href="/register">Регистрация</a></li>
         <li><a href="/login">Войти</a></li>

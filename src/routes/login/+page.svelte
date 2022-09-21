@@ -1,5 +1,6 @@
 <script>
-  import { enhance } from "$app/forms";
+  import { enhance, applyAction } from "$app/forms";
+  import { user } from "$lib/userStore";
 
   export let form;
 
@@ -8,20 +9,31 @@
       id: "username",
       placeholder: "admin",
       label: "Юзернейм",
-      type: "text"
+      type: "text",
+      autocomplete: "username"
     },
     {
       id: "password",
       placeholder: "wearen0tn00bs",
       label: "Пароль",
-      type: "password"
+      type: "password",
+      autocomplete: "current-password"
     }
   ];
+
+  function login() {
+    return async ({ result }) => {
+      await applyAction(result);
+      if (result.type === "success") {
+        await user.login(result.data);
+      }
+    };
+  }
 </script>
 
 <section>
   <h1>Логин</h1>
-  <form method="POST" use:enhance>
+  <form method="POST" use:enhance={login}>
     {#each fields as field}
       <section>
         <label for={field.id}>{field.label}</label>

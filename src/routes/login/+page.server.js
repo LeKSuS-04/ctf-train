@@ -1,5 +1,6 @@
-import { invalid, redirect } from "@sveltejs/kit";
+import { invalid } from "@sveltejs/kit";
 import { authentiateUser, getAccessToken } from "$lib/auth";
+import { makeApiResponse } from "../../lib/auth";
 
 export const actions = {
   default: async ({ cookies, request }) => {
@@ -18,6 +19,6 @@ export const actions = {
     }
 
     cookies.set("session", await getAccessToken(user));
-    throw redirect(303, "/");
+    return makeApiResponse(user);
   }
 };

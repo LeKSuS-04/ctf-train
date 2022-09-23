@@ -31,7 +31,7 @@ export async function load({ params, locals }) {
   let isSolved = new Map();
   solvedTasks.forEach((taskId) => isSolved.set(taskId, true));
 
-  let tasks = await prisma.task.findMany({
+  const tasks = await prisma.task.findMany({
     select: {
       _count: { select: { solves: true } },
       id: true,
@@ -43,7 +43,6 @@ export async function load({ params, locals }) {
       id: { in: taskIds }
     }
   });
-
   tasks.forEach((task) => {
     task.solves = task._count.solves;
     task.isSolved = isSolved.get(task.id);

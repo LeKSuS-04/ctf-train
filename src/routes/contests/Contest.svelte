@@ -5,10 +5,14 @@
   export let id;
   export let name = "Task name";
   export let description = "Task description";
-  export let tasksSolved = 0;
-  export let totalTasks = 10;
-  export let pointsObtained = 0;
-  export let totalPoints = 2000;
+  export let solved = [];
+  export let unsolved = [];
+
+  let solvedCost = 0;
+  let unsolvedCost = 0;
+
+  solved.forEach(({ cost }) => (solvedCost += cost));
+  unsolved.forEach(({ cost }) => (unsolvedCost += cost));
 </script>
 
 <a class="contest" href="/contest/{id}">
@@ -17,8 +21,8 @@
     <p>{description}</p>
   </div>
   <div class="stats">
-    <span>{tasksSolved}/{totalTasks} <Fa icon={faFlag} /></span>
-    <span>{pointsObtained}/{totalPoints} <Fa icon={faCoins} /></span>
+    <span>{solved.length}/{solved.length + unsolved.length} <Fa icon={faFlag} /></span>
+    <span>{solvedCost}/{solvedCost + unsolvedCost} <Fa icon={faCoins} /></span>
   </div>
 </a>
 

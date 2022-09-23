@@ -14,11 +14,11 @@ model User {
   @@map("users")
   id           Int            @id @default(autoincrement())
   username     String         @unique
-  passwordHash String
+  passwordHash String         @map("password_hash")
   fio          String?
-  isAdmin      Boolean        @default(false)
-  solvedTasks  SolvedTask[]
-  groups       GroupsToUsers[]
+  isAdmin      Boolean        @map("is_admin") @default(false)
+  solvedTasks  Solve[]
+  groups       GroupsUsers[]
 }
 
 model Contest {
@@ -26,8 +26,8 @@ model Contest {
   id          Int               @id @default(autoincrement())
   name        String
   description String?
-  isActive    Boolean           @default(false)
-  tasks       ContestsToTasks[]
+  isActive    Boolean           @map("is_active") @default(false)
+  tasks       ContestsTasks[]
 }
 
 model Task {
@@ -38,39 +38,42 @@ model Task {
   category    String
   description String?
   flag        String
-  isActive    Boolean           @default(false)
-  usersSolves SolvedTask[]
-  contests    ContestsToTasks[] 
+  isActive    Boolean           @map("is_active") @default(false)
+  usersSolves Solve[]
+  contests    ContestsTasks[] 
 }
 
 model Group {
   @@map("groups")
   id    Int             @id @default(autoincrement())
   name  String?
-  users GroupsToUsers[]
+  users GroupsUsers[]
 }
 
-model SolvedTask {
+model Solve {
+  @@map("solves")
   @@id([userId, taskId])
-  userId Int
+  userId Int      @map("user_id")
   user   User     @relation(fields: [userId], references: [id])
-  taskId Int
+  taskId Int      @map("task_id")
   task   Task     @relation(fields: [taskId], references: [id])
   time   DateTime @default(now())
 }
 
-model GroupsToUsers {
+model GroupsUsers {
+  @@map("groups_users")
   @@id([userId, groupId])
-  userId  Int
+  userId  Int   @map("user_id")
   user    User  @relation(fields: [userId], references: [id])
-  groupId Int
+  groupId Int   @map("group_id")
   group   Group @relation(fields: [groupId], references: [id])
 }
 
-model ContestsToTasks {
+model ContestsTasks {
+  @@map("contests_tasks")
   @@id([contestId, taskId])
-  contestId Int
+  contestId Int     @map("contest_id")
   contest   Contest @relation(fields: [contestId], references: [id])
-  taskId    Int
+  taskId    Int     @map("task_id")
   tasks     Task    @relation(fields: [taskId], references: [id])
 }

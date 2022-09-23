@@ -39,7 +39,7 @@ model Task {
   description String?
   flag        String
   isActive    Boolean           @map("is_active") @default(false)
-  usersSolves Solve[]
+  solves      Solve[]
   contests    ContestsTasks[] 
 }
 

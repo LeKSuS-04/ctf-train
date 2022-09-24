@@ -2,7 +2,7 @@
   export let category;
   export let cost;
   export let description;
-  export let title;
+  export let name;
 
   function goBack() {
     history.back();
@@ -10,7 +10,7 @@
 </script>
 
 <section class="task-info">
-  <h1>{title}</h1>
+  <h1>{name}</h1>
   <h2 class="category-cost">
     {category} / <span class="cost">{cost}</span>
   </h2>
@@ -47,6 +47,10 @@
     font-size: 1.2em;
     text-align: center;
     margin: 2em 0;
+
+    /* margin-left: -100%;
+    margin-right: -100%;
+    text-align: center; */
   }
 
   form {

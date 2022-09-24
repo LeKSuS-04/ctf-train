@@ -7,9 +7,9 @@
   const config = {
     fields: [
       {
-        realName: "login",
+        realName: "username",
         shownName: "Юзер",
-        class: "login"
+        class: "username"
       },
       {
         realName: "fio",
@@ -42,7 +42,7 @@
 <UserTable className="global-scoreboard" users={data.users} {config} />
 
 <style>
-  :global(.global-scoreboard th.login) {
+  :global(.global-scoreboard th.username) {
     width: 70%;
   }
   :global(.global-scoreboard th.fio) {
@@ -54,7 +54,7 @@
     font-family: var(--font-mono);
   }
 
-  :global(.global-scoreboard td.login),
+  :global(.global-scoreboard td.username),
   :global(.global-scoreboard td.fio) {
     max-width: 1px;
     white-space: nowrap;
@@ -66,7 +66,7 @@
     display: none;
   }
   @media (min-width: 720px) {
-    :global(.global-scoreboard th.login) {
+    :global(.global-scoreboard th.username) {
       width: 30%;
     }
     :global(.global-scoreboard .fio) {

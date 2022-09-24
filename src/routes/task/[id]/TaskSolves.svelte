@@ -2,14 +2,14 @@
   import { faDroplet } from "@fortawesome/free-solid-svg-icons";
   import UserTable from "../../../lib/UserTable.svelte";
 
-  export let solvers;
+  export let usersSolved;
 
   const config = {
     fields: [
       {
-        realName: "login",
+        realName: "username",
         shownName: "Юзер",
-        class: "login"
+        class: "username"
       },
       {
         realName: "fio",
@@ -32,7 +32,7 @@
 </script>
 
 <section class="scoreboard">
-  <UserTable className="global-task-scoreboard" users={solvers} {config} />
+  <UserTable className="global-task-scoreboard" users={usersSolved} {config} />
 </section>
 
 <style>
@@ -41,7 +41,7 @@
     width: 100vw;
   }
 
-  :global(.global-task-scoreboard th.login) {
+  :global(.global-task-scoreboard th.username) {
     width: 60%;
   }
   :global(.global-task-scoreboard th.fio) {
@@ -56,7 +56,7 @@
     font-family: var(--font-mono);
   }
 
-  :global(.global-task-scoreboard td.login),
+  :global(.global-task-scoreboard td.username),
   :global(.global-task-scoreboard td.fio) {
     max-width: 1px;
     white-space: nowrap;
@@ -71,7 +71,7 @@
     .scoreboard {
       width: 768px;
     }
-    :global(.global-task-scoreboard th.login) {
+    :global(.global-task-scoreboard th.username) {
       width: 30%;
     }
     :global(.global-task-scoreboard th.time) {

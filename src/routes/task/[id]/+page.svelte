@@ -21,9 +21,9 @@
   </nav>
 
   {#if activeTab == 0}
-    <TaskInfo {...data} />
+    <TaskInfo {...data.task} />
   {:else}
-    <TaskSolves solvers={data.solvers} />
+    <TaskSolves usersSolved={data.usersSolved} />
   {/if}
 </section>
 

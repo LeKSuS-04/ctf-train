@@ -1,6 +1,7 @@
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import { prisma } from "$lib/db";
+import { error } from "@sveltejs/kit";
 
 const secretKey = process.env.SECRET_KEY ?? "No secrets?";
 const bcryptRounds = 10;
@@ -63,4 +64,14 @@ export function makeApiResponse(user) {
     fio: user.fio,
     isAdmin: user.isAdmin
   };
+}
+
+export function authGuard(locals) {
+  const user = locals.user;
+  if (user === null) throw error(401);
+}
+
+export function adminGuard(locals) {
+  const user = locals.user;
+  if (user === null || !user.isAdmin) throw error(401);
 }

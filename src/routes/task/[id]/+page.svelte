@@ -2,6 +2,8 @@
   import TaskInfo from "./TaskInfo.svelte";
   import TaskSolves from "./TaskSolves.svelte";
 
+  export let form;
+
   export let data;
   let activeTab = 0;
 
@@ -21,7 +23,7 @@
   </nav>
 
   {#if activeTab == 0}
-    <TaskInfo {...data.task} />
+    <TaskInfo bind:form {...data.task} />
   {:else}
     <TaskSolves usersSolved={data.usersSolved} />
   {/if}

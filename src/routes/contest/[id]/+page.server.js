@@ -1,7 +1,10 @@
 import { error } from "@sveltejs/kit";
+import { authGuard } from "$lib/auth";
 import { prisma } from "$lib/db";
 
 export async function load({ params, locals }) {
+  authGuard(locals);
+
   const contestId = Number(params.id);
   if (isNaN(contestId)) {
     throw error(404);

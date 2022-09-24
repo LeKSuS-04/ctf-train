@@ -1,4 +1,5 @@
 <script>
+  import FormError from "$lib/FormError.svelte";
   import { enhance, applyAction } from "$app/forms";
   import { user } from "$lib/userStore";
 
@@ -43,9 +44,9 @@
 
     {#if form}
       {#if form.missing}
-        <span class="error">Необходимо заполнить все поля</span>
+        <FormError>Необходимо заполнить все поля</FormError>
       {:else if form.badCredentials}
-        <span class="error">Не удалось найти пользователя с такими учетными данными</span>
+        <FormError>Не удалось найти пользователя с такими учетными данными</FormError>
       {/if}
     {/if}
 

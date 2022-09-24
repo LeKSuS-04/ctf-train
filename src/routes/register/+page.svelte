@@ -1,4 +1,5 @@
 <script>
+  import FormError from "$lib/FormError.svelte";
   import { enhance, applyAction } from "$app/forms";
   import { user } from "$lib/userStore";
 
@@ -69,11 +70,11 @@
 
     {#if form}
       {#if form.passwordsDontMatch}
-        <span class="error">Указанные пароли не совпадают</span>
+        <FormError>Указанные пароли не совпадают</FormError>
       {:else if form.missing}
-        <span class="error">Необходимо заполнить все поля</span>
+        <FormError>Необходимо заполнить все поля</FormError>
       {:else if form.exists}
-        <span class="error">Пользователь с таким именем уже зарегистрирован</span>
+        <FormError>Пользователь с таким именем уже зарегистрирован</FormError>
       {/if}
     {/if}
 

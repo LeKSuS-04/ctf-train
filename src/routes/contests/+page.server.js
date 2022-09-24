@@ -1,6 +1,9 @@
 import { prisma } from "$lib/db";
+import { authGuard } from "$lib/auth";
 
 export async function load({ locals }) {
+  authGuard(locals);
+
   const contests = await prisma.contest.findMany({
     select: {
       id: true,

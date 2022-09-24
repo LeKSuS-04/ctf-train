@@ -2,7 +2,7 @@ import argparse
 import bcrypt
 import sqlite3
 from dataclasses import astuple, dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from secrets import token_hex
 from typing import TypeVar
 
@@ -103,7 +103,11 @@ class Solve(Base):
     @classmethod
     def from_db_entry(cls, db_entry: tuple):
         _, user_id, task_id, time = db_entry
-        return cls(user_id, task_id, datetime.strptime(time, '%Y-%m-%d %H:%M:%S'))
+        return cls(
+            user_id,
+            task_id,
+            datetime.strptime(time, '%Y-%m-%d %H:%M:%S') - timedelta(hours=3),
+        )
 
 
 @dataclass

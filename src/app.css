@@ -107,14 +107,9 @@ form input:focus {
   color: var(--text-accent);
   border-color: var(--primary);
 }
-input:-webkit-autofill, 		// HACK: this works, but is kinda dirty
+input:-webkit-autofill, 		/* HACK: this works, but is kinda dirty */
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
-}
-form .error {
-  display: block;
-  text-align: center;
-  color: var(--text-error);
 }
 form button {
   width: 100%;

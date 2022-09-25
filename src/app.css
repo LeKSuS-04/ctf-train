@@ -4,19 +4,6 @@
   font-family: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --font-mono: "Fira Mono", monospace;
-  --primary: #88cc14;
-  --primary-accent: #9fef00;
-  --gold: #ffd000;
-  --silver: #c0c0c0;
-  --bronze: #cd7f32;
-  --task-solved: #2b4026;
-  --first-blood: #ff3e3e;
-  --background: #141d2b;
-  --background-accent: #1a2332;
-  --surface: #263143;
-  --text: #a4b1cd;
-  --text-accent: #ffffff;
-  --text-error: #ff3e3e;
   font-size: 16px;
 }
 

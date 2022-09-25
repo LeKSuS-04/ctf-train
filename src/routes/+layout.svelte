@@ -1,11 +1,18 @@
 <script>
-  import { user } from "$lib/userStore";
+  import { user } from "$lib/stores/userStore";
   import Header from "$lib/components/Header.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import "../app.css";
-
+  import "../color-themes.css";
+  
   export let data;
   user.set(data.user);
+
+  // import { colorStore } from "$lib/stores/colorThemeStore";
+  // import { onMount } from "svelte";
+  // onMount(() => {
+  //   colorStore.readStorage();
+  // });
 </script>
 
 <Header />

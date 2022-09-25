@@ -1,5 +1,5 @@
 <script>
-  import { user } from "$lib/userStore";
+  import { user } from "$lib/stores/userStore";
 </script>
 
 <header>
@@ -14,7 +14,7 @@
     <ul class="user-actions">
       {#if $user}
         <li><span class="username">{$user.username}</span></li>
-        <li><a href="/settings">Настройки</a></li>
+        <!-- <li><a href="/settings">Настройки</a></li> -->
         <!-- svelte-ignore a11y-missing-attribute -->
         <li><a on:click|preventDefault={user.logout}>Выйти</a></li>
       {:else}

@@ -1,0 +1,61 @@
+body.light {
+  --primary: #58a4b0;
+  --primary-accent: #488e99;
+  --gold: #e5c100;
+  --silver: #999999;
+  --bronze: #cd7f32;
+  --task-solved: #bad9de;
+  --first-blood: #d64933;
+  --background: #eeeeee;
+  --background-accent: #dddddd;
+  --surface: #cccccc;
+  --text: #2b303a;
+  --text-accent: #000000;
+  --text-error: #d64933;
+}
+body,
+body.dark {
+  --primary: #77cbb9;
+  --primary-accent: #75b8c8;
+  --gold: #e5bb00;
+  --silver: #acacac;
+  --bronze: #b8722d;
+  --task-solved: #163B33;
+  --first-blood: #BF4A5F;
+  --background: #121212;
+  --background-accent: #181818;
+  --surface: #222222;
+  --text: #a4b1cd;
+  --text-accent: #ffffff;
+  --text-error: #BF4A5F;
+}
+body.mshp-ctf {
+  --primary: #88cc14;
+  --primary-accent: #9fef00;
+  --gold: #ffd000;
+  --silver: #c0c0c0;
+  --bronze: #cd7f32;
+  --task-solved: #2b4026;
+  --first-blood: #ff3e3e;
+  --background: #141d2b;
+  --background-accent: #1a2332;
+  --surface: #263143;
+  --text: #a4b1cd;
+  --text-accent: #ffffff;
+  --text-error: #ff3e3e;
+}
+body.hackthebox {
+  --primary: #88cc14;
+  --primary-accent: #9fef00;
+  --gold: #ffd000;
+  --silver: #c0c0c0;
+  --bronze: #cd7f32;
+  --task-solved: #2b4026;
+  --first-blood: #ff3e3e;
+  --background: #141d2b;
+  --background-accent: #1a2332;
+  --surface: #263143;
+  --text: #a4b1cd;
+  --text-accent: #ffffff;
+  --text-error: #ff3e3e;
+}

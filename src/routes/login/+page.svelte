@@ -1,7 +1,7 @@
 <script>
   import FormError from "$lib/components/FormError.svelte";
   import { enhance, applyAction } from "$app/forms";
-  import { user } from "$lib/userStore";
+  import { user } from "$lib/stores/userStore";
 
   export let form;
 

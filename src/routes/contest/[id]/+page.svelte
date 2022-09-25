@@ -1,5 +1,5 @@
 <script>
-  import Task from "$lib/Task.svelte";
+  import Task from "$lib/components/Task.svelte";
   export let data;
 
   let categories = new Set();

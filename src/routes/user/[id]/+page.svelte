@@ -1,6 +1,6 @@
 <script>
-  import Table from "$lib/Table.svelte";
-  import TextSep from "$lib/TextSep.svelte";
+  import Table from "$lib/components/Table.svelte";
+  import TextSep from "$lib/components/TextSep.svelte";
 
   export let data;
 
@@ -55,7 +55,6 @@
   :global(.tasks-solved th.category) {
     text-align: center;
   }
-
 
   :global(.tasks-solved td.time) {
     padding: 0 1em;

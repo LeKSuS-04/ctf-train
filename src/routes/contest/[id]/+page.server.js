@@ -11,17 +11,20 @@ export async function load({ params, locals }) {
   }
 
   const contest = await prisma.contest.findUnique({
-    select: { id: true },
+    select: { id: true, isActive: true },
     where: { id: contestId }
   });
-  if (contest === null) {
+  if (contest === null || !contest.isActive) {
     throw error(404);
   }
 
   const taskIds = (
     await prisma.ContestsTasks.findMany({
       select: { taskId: true },
-      where: { contestId: contestId }
+      where: {
+        contestId: contestId,
+        task: { isActive: true }
+      }
     })
   ).map(({ taskId }) => taskId);
 
@@ -36,18 +39,27 @@ export async function load({ params, locals }) {
 
   const tasks = await prisma.task.findMany({
     select: {
-      _count: { select: { solves: true } },
       id: true,
       name: true,
       cost: true,
-      category: true
+      category: true,
+      solves: {
+        select: {
+          user: {
+            select: {
+              isAdmin: true
+            }
+          }
+        }
+      }
     },
     where: {
       id: { in: taskIds }
     }
   });
   tasks.forEach((task) => {
-    task.solves = task._count.solves;
+    // Don't count admins in solves
+    task.solves = task.solves.filter((solve) => !solve.user.isAdmin).length;
     task.isSolved = isSolved.get(task.id);
     delete task._count;
   });

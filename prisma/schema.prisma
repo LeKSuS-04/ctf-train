@@ -75,5 +75,5 @@ model ContestsTasks {
   contestId Int     @map("contest_id")
   contest   Contest @relation(fields: [contestId], references: [id])
   taskId    Int     @map("task_id")
-  tasks     Task    @relation(fields: [taskId], references: [id])
+  task      Task    @relation(fields: [taskId], references: [id])
 }

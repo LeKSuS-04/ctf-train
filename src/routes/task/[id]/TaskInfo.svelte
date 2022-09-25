@@ -1,7 +1,7 @@
 <script>
   import { enhance, applyAction } from "$app/forms";
   import { invalidateAll } from "$app/navigation";
-  import FormError from "$lib/FormError.svelte";
+  import FormError from "$lib/components/FormError.svelte";
 
   export let form;
   let submitionError = false;

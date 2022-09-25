@@ -21,41 +21,45 @@ export async function load({ params }) {
     throw error(404);
   }
 
+  const solves = await prisma.solve.findMany({
+    select: {
+      task: {
+        select: {
+          id: true,
+          name: true,
+          cost: true,
+          category: true,
+          isActive: true
+        }
+      },
+      time: true
+    },
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      time: "asc"
+    }
+  });
+
+  const activeSolves = [];
   let solvedSum = 0;
-  const solves = (
-    await prisma.solve.findMany({
-      select: {
-        task: {
-          select: {
-            id: true,
-            name: true,
-            cost: true,
-            category: true
-          }
-        },
-        time: true
-      },
-      where: {
-        userId: userId
-      },
-      orderBy: {
-        time: 'asc'
-      }
-    })
-  ).map(({ task, time }) => {
+  solves.forEach(({ task, time }) => {
     solvedSum += task.cost;
-    return {
-      id: task.id,
-      name: task.name,
-      category: task.category,
-      cost: task.cost,
-      time: formatTime(time)
-    };
+    if (task.isActive) {
+      activeSolves.push({
+        id: task.id,
+        name: task.name,
+        category: task.category,
+        cost: task.cost,
+        time: formatTime(time)
+      });
+    }
   });
 
   return {
     profile,
-    solves,
+    solves: activeSolves,
     solvedSum
   };
 }

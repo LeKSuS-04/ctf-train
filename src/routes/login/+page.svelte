@@ -1,5 +1,5 @@
 <script>
-  import FormError from "$lib/FormError.svelte";
+  import FormError from "$lib/components/FormError.svelte";
   import { enhance, applyAction } from "$app/forms";
   import { user } from "$lib/userStore";
 

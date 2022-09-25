@@ -9,13 +9,15 @@ async function getTask(idString, selectFields) {
     throw error(404);
   }
 
+  selectFields.isActive = true;
+
   const task = await prisma.task.findUnique({
     select: selectFields,
     where: {
       id: taskId
     }
   });
-  if (task === null) {
+  if (task === null || !task.isActive) {
     throw error(404);
   }
 
@@ -82,20 +84,25 @@ export async function load({ params, locals }) {
     const user = await prisma.user.findUnique({
       select: {
         username: true,
-        fio: true
+        fio: true,
+        isAdmin: true
       },
       where: {
         id: userId
       }
     });
-    const userSolve = {
-      id: userId,
-      username: user.username,
-      fio: user.fio,
-      time: formatTime(time)
-    };
-    usersSolved.push(userSolve);
     task.isSolved |= userId === locals.user.id;
+
+    // Don't show admins on the task scoreboard
+    if (!user.isAdmin) {
+      const userSolve = {
+        id: userId,
+        username: user.username,
+        fio: user.fio,
+        time: formatTime(time)
+      };
+      usersSolved.push(userSolve);
+    }
   }
   delete task.solves;
 

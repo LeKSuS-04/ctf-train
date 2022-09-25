@@ -1,6 +1,6 @@
 <script>
   import { faCrown, faMedal } from "@fortawesome/free-solid-svg-icons";
-  import Table from "$lib/Table.svelte";
+  import Table from "$lib/components/Table.svelte";
 
   export let data;
 

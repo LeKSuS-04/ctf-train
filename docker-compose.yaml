@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  ctf-train:
+    build: .
+    image: ctf-train
+    container_name: ctf-train
+    environment:
+      - PUBLIC_REPORT_URL=https://t.me/example
+      - DATABASE_URL=file:///data/db.sqlite3
+      - SECRET_KEY=iamverysecret
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+        window: 120s
+    volumes:
+      - ./data:/data
+    networks:
+      - internal
+
+  nginx:
+    image: nginx:latest
+    container_name: reverse-proxy
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+        window: 120s
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl/keys/privkey.pem/etc/nginx/ssl/privkey.pem
+      - ./nginx/ssl/keys/fullchain.pem/etc/nginx/ssl/fullchain.pem
+      - ./nginx/ssl/bot:/etc/nginx/ssl/bot
+    networks:
+      - internal
+
+networks:
+  internal:

@@ -236,7 +236,6 @@ def write_data(data: Data, path: str):
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    new_conn = sqlite3.connect(args.new_db_path)
 
     data = read_old_data(args.old_db_path)
     write_data(data, args.new_db_path)

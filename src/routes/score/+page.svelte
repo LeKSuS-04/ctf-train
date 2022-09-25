@@ -1,10 +1,11 @@
 <script>
   import { faCrown, faMedal } from "@fortawesome/free-solid-svg-icons";
-  import UserTable from "../../lib/UserTable.svelte";
+  import Table from "$lib/Table.svelte";
 
   export let data;
 
   const config = {
+    templateLink: "/user/{}",
     fields: [
       {
         realName: "username",
@@ -39,7 +40,7 @@
   };
 </script>
 
-<UserTable className="global-scoreboard" users={data.users} {config} />
+<Table className="global-scoreboard" entries={data.users} {config} />
 
 <style>
   :global(.global-scoreboard th.username) {

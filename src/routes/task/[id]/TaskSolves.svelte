@@ -1,10 +1,11 @@
 <script>
   import { faDroplet } from "@fortawesome/free-solid-svg-icons";
-  import UserTable from "../../../lib/UserTable.svelte";
+  import Table from "$lib/Table.svelte";
 
   export let usersSolved;
 
   const config = {
+    templateLink: "/user/{}",
     fields: [
       {
         realName: "username",
@@ -32,7 +33,7 @@
 </script>
 
 <section class="scoreboard">
-  <UserTable className="global-task-scoreboard" users={usersSolved} {config} />
+  <Table className="global-task-scoreboard" entries={usersSolved} {config} />
 </section>
 
 <style>

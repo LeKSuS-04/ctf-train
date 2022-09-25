@@ -2,7 +2,7 @@
   import Fa from "svelte-fa/src/fa.svelte";
   import { goto } from "$app/navigation";
 
-  export let users;
+  export let entries;
   export let config;
   export let className;
 </script>
@@ -17,23 +17,23 @@
     </tr>
   </thead>
   <tbody>
-    {#each users as user, i}
-      {@const place = i + 1}
-      <tr on:click={goto(`/user/${user.id}`)} class="row-{place % 2}">
+    {#each entries as entry, i}
+      {@const order = i + 1}
+      <tr on:click={goto(config.templateLink.replace(/{}/g, entry.id))} class="row-{order % 2}">
         <td class="place">
-          {#if config.icons.hasOwnProperty(place)}
+          {#if config.icons.hasOwnProperty(order)}
             {#each ["normal", "hovered"] as medalClass}
               <span class={medalClass}>
-                <Fa {...config.icons[place]} />
+                <Fa {...config.icons[order]} />
               </span>
             {/each}
           {:else}
-            {place}
+            {order}
           {/if}
         </td>
 
         {#each config.fields as field}
-          <td class={field.class}>{user[field.realName]}</td>
+          <td class={field.class}>{entry[field.realName]}</td>
         {/each}
       </tr>
     {/each}

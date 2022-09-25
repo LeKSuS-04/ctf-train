@@ -1,6 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { PUBLIC_REPORT_URL } from "$env/static/public";
+  import TextSep from "$lib/TextSep.svelte";
 
   function goBack() {
     history.back();
@@ -14,8 +15,8 @@
   <h1>Нет доступа</h1>
   <p>Такие дела :(</p>
   <p>
-    <a href="/">Домой</a> <span class="sep" />
-    <a href="/login">Авторизация</a> <span class="sep" />
+    <a href="/">Домой</a> <TextSep />
+    <a href="/login">Авторизация</a> <TextSep />
     <!-- svelte-ignore a11y-missing-attribute -->
     <a on:click|preventDefault={goBack}>Назад</a>
   </p>
@@ -23,10 +24,3 @@
   <h1>{$page.status}</h1>
   <p>{$page.error.message}</p>
 {/if}
-
-<style>
-  .sep::before {
-    content: "•";
-    margin: auto 0.4em;
-  }
-</style>

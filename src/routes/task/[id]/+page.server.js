@@ -1,6 +1,7 @@
 import { error, invalid } from "@sveltejs/kit";
 import { prisma } from "$lib/db";
 import { authGuard } from "$lib/auth";
+import { formatTime } from "$lib/time";
 
 async function getTask(idString, selectFields) {
   const taskId = Number(idString);
@@ -91,7 +92,7 @@ export async function load({ params, locals }) {
       id: userId,
       username: user.username,
       fio: user.fio,
-      time: time.toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+      time: formatTime(time)
     };
     usersSolved.push(userSolve);
     task.isSolved |= userId === locals.user.id;

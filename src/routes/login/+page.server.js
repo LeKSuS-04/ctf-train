@@ -1,6 +1,6 @@
 import { invalid } from "@sveltejs/kit";
 import { authentiateUser, getAccessToken } from "$lib/auth";
-import { makeApiResponse } from "../../lib/auth";
+import { makeApiResponse } from "$lib/auth";
 
 export const actions = {
   default: async ({ cookies, request }) => {

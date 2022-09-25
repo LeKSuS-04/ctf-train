@@ -5,10 +5,6 @@ services:
     build: .
     image: ctf-train
     container_name: ctf-train
-    environment:
-      - PUBLIC_REPORT_URL=https://t.me/example
-      - DATABASE_URL=file:///data/db.sqlite3
-      - SECRET_KEY=iamverysecret
     deploy:
       restart_policy:
         condition: on-failure

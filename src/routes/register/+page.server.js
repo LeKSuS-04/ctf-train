@@ -3,12 +3,16 @@ import { createUser, getAccessToken, makeApiResponse } from "$lib/auth";
 import { Prisma } from "@prisma/client";
 
 export const actions = {
-  default: async ({ cookies, request }) => {
+  default: async ({ cookies, request, locals }) => {
     const data = await request.formData();
 
     const username = data.get("username");
     const fio = data.get("fio");
     const password = data.get("password");
+
+    if (!locals.settings.allowRegistration) {
+      return invalid(403, { username, fio, disallowed: true });
+    }
 
     if ([fio, username, password].some((prop) => !prop)) {
       return invalid(400, { username, fio, missing: true });

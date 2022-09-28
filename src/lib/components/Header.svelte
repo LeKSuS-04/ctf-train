@@ -9,6 +9,10 @@
       <li><a href="/contests">Контесты</a></li>
       <li><a href="/score">Скорборд</a></li>
       <li><a href="/groups">Группы</a></li>
+
+      {#if $user && $user.isAdmin}
+        <li><a href="/admin">Админ</a></li>
+      {/if}
     </ul>
 
     <ul class="user-actions">

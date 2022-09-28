@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Settings {
+  @@map("settings")
+  id                  Int       @id @default(1)
+  allowRegistration   Boolean   @map("allow_registration") @default(false)
+}
+
 model User {
   @@map("users")
   id           Int            @id @default(autoincrement())

@@ -69,7 +69,9 @@
     {/each}
 
     {#if form}
-      {#if form.passwordsDontMatch}
+      {#if form.disallowed}
+        <FormError>Регистрация в данный момент недоступна</FormError>
+      {:else if form.passwordsDontMatch}
         <FormError>Указанные пароли не совпадают</FormError>
       {:else if form.missing}
         <FormError>Необходимо заполнить все поля</FormError>

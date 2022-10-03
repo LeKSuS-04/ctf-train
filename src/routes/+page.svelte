@@ -1,7 +1,3 @@
-<svelte:head>
-  <title>MSHP-CTF</title>
-</svelte:head>
-
 <section>
   <h1>Добро пожаловать. Опять.</h1>
   <h2>Ддосишь нас сегодня, мы ддосим тебя завтра.</h2>

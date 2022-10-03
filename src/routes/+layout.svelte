@@ -1,4 +1,5 @@
 <script>
+  import { PUBLIC_APP_NAME } from "$env/static/public";
   import { user } from "$lib/stores/userStore";
   import Header from "$lib/components/Header.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -14,6 +15,10 @@
   //   colorStore.readStorage();
   // });
 </script>
+
+<svelte:head>
+  <title>{PUBLIC_APP_NAME}</title>
+</svelte:head>
 
 <Header />
 

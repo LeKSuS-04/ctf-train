@@ -20,14 +20,15 @@ body.dark {
   --gold: #e5bb00;
   --silver: #acacac;
   --bronze: #b8722d;
-  --task-solved: #163B33;
-  --first-blood: #BF4A5F;
+  --task-solved: #163b33;
+  --first-blood: #bf4a5f;
   --background: #121212;
   --background-accent: #181818;
   --surface: #222222;
   --text: #a4b1cd;
+  --text-inactive: #414652;
   --text-accent: #ffffff;
-  --text-error: #BF4A5F;
+  --text-error: #bf4a5f;
 }
 body.mshp-ctf {
   --primary: #88cc14;

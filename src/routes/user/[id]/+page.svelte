@@ -10,12 +10,19 @@
       {
         realName: "category",
         shownName: "Категория",
-        class: "category"
+        style: {
+          textAlign: "center",
+          monospace: true
+        }
       },
       {
         realName: "cost",
         shownName: "Стоимость",
-        class: "cost"
+        class: "cost",
+        style: {
+          textAlign: "center",
+          monospace: true
+        }
       },
       {
         realName: "name",
@@ -25,10 +32,14 @@
       {
         realName: "time",
         shownName: "Время",
-        class: "time"
+        style: {
+          class: "time",
+          textAlign: "center",
+          monospace: true
+        }
       }
     ],
-    icons: {}
+    placement: false
   };
 </script>
 
@@ -40,19 +51,6 @@
 
 <style>
   h2 {
-    text-align: center;
-  }
-
-  :global(.tasks-solved td.time),
-  :global(.tasks-solved td.cost),
-  :global(.tasks-solved td.category) {
-    font-family: var(--font-mono);
-    text-align: center;
-  }
-
-  :global(.tasks-solved th.time),
-  :global(.tasks-solved th.cost),
-  :global(.tasks-solved th.category) {
     text-align: center;
   }
 

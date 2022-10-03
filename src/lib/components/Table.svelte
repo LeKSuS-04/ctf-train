@@ -5,35 +5,94 @@
   export let entries;
   export let config;
   export let className;
+
+  let windowWidth;
+
+  $: onMobile = windowWidth <= 720;
+
+  function formatString(string, data) {
+    return string.replace(/{}/g, data);
+  }
+
+  $: parseStyle = (style) => {
+    if (!style) return "";
+
+    function parseSimpleProps(styleProps) {
+      let styleString = "";
+
+      if (styleProps.width) {
+        styleString += `width: ${styleProps.width};`;
+      }
+
+      if (styleProps.hidden) {
+        styleString += `display: none;`;
+      }
+
+      if (styleProps.monospace) {
+        styleString += `font-family: var(--font-mono);`;
+      }
+
+      if (styleProps.textAlign) {
+        styleString += `text-align: ${styleProps.textAlign};`;
+      }
+
+      if (styleProps.hideOverflow) {
+        styleString += `
+          max-width: 1px;
+          white-space: nowrap;
+          overflow-x: hidden;
+          text-overflow: ellipsis;
+        `;
+      }
+
+      return styleString;
+    }
+
+    let result = parseSimpleProps(style);
+    if (onMobile && style.onMobile) {
+      result = result + parseSimpleProps(style.onMobile);
+    }
+
+    return result;
+  };
 </script>
+
+<svelte:window bind:innerWidth={windowWidth} />
 
 <table class={className}>
   <thead>
     <tr>
-      <th class="place">#</th>
+      {#if config.placement}
+        <th class="place" style={config.placement.style}>#</th>
+      {/if}
       {#each config.fields as field}
-        <th class={field.class}>{field.shownName}</th>
+        <th class={field.style?.class} style={parseStyle(field.style)}>{field.shownName}</th>
       {/each}
     </tr>
   </thead>
   <tbody>
     {#each entries as entry, i}
       {@const order = i + 1}
-      <tr on:click={goto(config.templateLink.replace(/{}/g, entry.id))} class="row-{order % 2}">
-        <td class="place">
-          {#if config.icons.hasOwnProperty(order)}
-            {#each ["normal", "hovered"] as medalClass}
-              <span class={medalClass}>
-                <Fa {...config.icons[order]} />
-              </span>
-            {/each}
-          {:else}
-            {order}
-          {/if}
-        </td>
+      <tr on:click={goto(formatString(config.templateLink, entry.id))} class="row-{order % 2}">
+        {#if config.placement}
+          {@const icons = config.placement.icons}
+          <td class="place" style={config.placement.style}>
+            {#if icons && icons[order]}
+              {#each ["normal", "hovered"] as medalClass}
+                <span class={medalClass}>
+                  <Fa {...icons[order]} />
+                </span>
+              {/each}
+            {:else}
+              {order}
+            {/if}
+          </td>
+        {/if}
 
         {#each config.fields as field}
-          <td class={field.class}>{entry[field.realName]}</td>
+          <td class={field.style?.class} style={parseStyle(field.style)}>
+            {entry[field.realName]}
+          </td>
         {/each}
       </tr>
     {/each}

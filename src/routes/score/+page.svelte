@@ -10,68 +10,53 @@
       {
         realName: "username",
         shownName: "Юзер",
-        class: "username"
+        style: {
+          class: "username",
+          width: "28%",
+          onMobile: {
+            width: "70%"
+          }
+        }
       },
       {
         realName: "fio",
         shownName: "ФИО",
-        class: "fio"
+        style: {
+          class: "fio",
+          width: "70%",
+          hideOverflow: true,
+          onMobile: {
+            hidden: true
+          }
+        }
       },
       {
         realName: "score",
         shownName: "Результат",
-        class: "score"
+        style: {
+          class: "score",
+          monospace: true,
+          textAlign: "center"
+        }
       }
     ],
-    icons: {
-      1: {
-        icon: faCrown,
-        primaryColor: "var(--gold)"
-      },
-      2: {
-        icon: faMedal,
-        primaryColor: "var(--silver)"
-      },
-      3: {
-        icon: faMedal,
-        primaryColor: "var(--bronze)"
+    placement: {
+      icons: {
+        1: {
+          icon: faCrown,
+          primaryColor: "var(--gold)"
+        },
+        2: {
+          icon: faMedal,
+          primaryColor: "var(--silver)"
+        },
+        3: {
+          icon: faMedal,
+          primaryColor: "var(--bronze)"
+        }
       }
     }
   };
 </script>
 
 <Table className="global-scoreboard" entries={data.users} {config} />
-
-<style>
-  :global(.global-scoreboard th.username) {
-    width: 70%;
-  }
-  :global(.global-scoreboard th.fio) {
-    width: 70%;
-  }
-
-  :global(.global-scoreboard .score) {
-    text-align: center;
-    font-family: var(--font-mono);
-  }
-
-  :global(.global-scoreboard td.username),
-  :global(.global-scoreboard td.fio) {
-    max-width: 1px;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-  }
-
-  :global(.global-scoreboard .fio) {
-    display: none;
-  }
-  @media (min-width: 720px) {
-    :global(.global-scoreboard th.username) {
-      width: 30%;
-    }
-    :global(.global-scoreboard .fio) {
-      display: table-cell;
-    }
-  }
-</style>

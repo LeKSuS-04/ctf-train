@@ -10,23 +10,48 @@
       {
         realName: "username",
         shownName: "Юзер",
-        class: "username"
+        style: {
+          class: "username",
+          width: "26%",
+          hideOverflow: true,
+          onMobile: {
+            width: "50%"
+          }
+        }
       },
       {
         realName: "fio",
         shownName: "ФИО",
-        class: "fio"
+        hideOverflow: true,
+        style: {
+          class: "fio",
+          width: "44%",
+          hideOverflow: true,
+          onMobile: {
+            hidden: true
+          }
+        }
       },
       {
         realName: "time",
         shownName: "Время сдачи",
-        class: "time"
+        style: {
+          class: "time",
+          width: "40%",
+          monospace: true,
+          textAlign: "center",
+          onMobile: {
+            width: "50%"
+          }
+        }
       }
     ],
-    icons: {
-      1: {
-        icon: faDroplet,
-        primaryColor: "var(--first-blood)"
+    placement: {
+      icons: {
+        1: {
+          icon: faDroplet,
+          primaryColor: "var(--first-blood)"
+        }
       }
     }
   };
@@ -42,44 +67,9 @@
     width: 100vw;
   }
 
-  :global(.global-task-scoreboard th.username) {
-    width: 60%;
-  }
-  :global(.global-task-scoreboard th.fio) {
-    width: 42%;
-  }
-  :global(.global-task-scoreboard th.time) {
-    width: 40%;
-  }
-
-  :global(.global-task-scoreboard .time) {
-    text-align: center;
-    font-family: var(--font-mono);
-  }
-
-  :global(.global-task-scoreboard td.username),
-  :global(.global-task-scoreboard td.fio) {
-    max-width: 1px;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-  }
-
-  :global(.global-task-scoreboard .fio) {
-    display: none;
-  }
-  @media (min-width: 768px) {
+  @media (min-width: 720px) {
     .scoreboard {
-      width: 768px;
-    }
-    :global(.global-task-scoreboard th.username) {
-      width: 30%;
-    }
-    :global(.global-task-scoreboard th.time) {
-      width: 28%;
-    }
-    :global(.global-task-scoreboard .fio) {
-      display: table-cell;
+      max-width: 720px;
     }
   }
 </style>

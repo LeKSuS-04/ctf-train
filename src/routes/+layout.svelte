@@ -4,7 +4,7 @@
   import Footer from "$lib/components/Footer.svelte";
   import "../app.css";
   import "../color-themes.css";
-  
+
   export let data;
   user.set(data.user);
 

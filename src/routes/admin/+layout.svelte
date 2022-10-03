@@ -11,12 +11,13 @@
 
 <slot />
 
-<section class="dummy"></section>
+<section class="dummy" />
 
 <style>
   nav {
     background-color: var(--background-accent);
     width: 100vw;
+    margin-bottom: 1em;
   }
   ul {
     list-style: none;

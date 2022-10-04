@@ -46,12 +46,21 @@
 <section>
   <h1>{data.profile.username}</h1>
   <h2>{data.solvedSum} поинтов <TextSep /> {data.solves.length} флагов</h2>
-  <Table className="tasks-solved" entries={data.solves} {config} />
+
+  {#if data.solves.length > 0}
+    <Table className="tasks-solved" entries={data.solves} {config} />
+  {:else}
+    <h2 class="disabled">Еще не решено ни одного таска</h2>
+  {/if}
 </section>
 
 <style>
   h2 {
     text-align: center;
+  }
+
+  .disabled {
+    color: var(--text-inactive);
   }
 
   :global(.tasks-solved td.time) {

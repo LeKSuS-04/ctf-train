@@ -13,16 +13,20 @@
   });
 </script>
 
-{#each [...categories] as category}
-  <section>
-    <h1>{category}</h1>
-    <div class="task-box">
-      {#each tasksByCategories[category] as task}
-        <Task {...task} />
-      {/each}
-    </div>
-  </section>
-{/each}
+{#if categories.length > 0}
+  {#each [...categories] as category}
+    <section>
+      <h1>{category}</h1>
+      <div class="task-box">
+        {#each tasksByCategories[category] as task}
+          <Task {...task} />
+        {/each}
+      </div>
+    </section>
+  {/each}
+{:else}
+    <h1 class="disabled">Тут пока пусто...</h1>
+{/if}
 
 <style>
   section {
@@ -30,6 +34,10 @@
   }
   h1 {
     text-align: left;
+  }
+  h1.disabled {
+    text-align: center;
+    color: var(--text-inactive);
   }
   .task-box {
     display: flex;

@@ -58,13 +58,23 @@
 </script>
 
 <section class="scoreboard">
-  <Table className="global-task-scoreboard" entries={usersSolved} {config} />
+  {#if usersSolved.length > 0}
+    <Table className="global-task-scoreboard" entries={usersSolved} {config} />
+  {:else}
+    <h2 class="disabled">Таск ещё никем не решен... Ты можешь быть первым!</h2>
+  {/if}
 </section>
 
 <style>
   .scoreboard {
     margin-top: 2rem;
     width: 100vw;
+  }
+
+  .disabled {
+    color: var(--text-inactive);
+    text-align: center;
+    margin-top: 40%;
   }
 
   @media (min-width: 720px) {

@@ -59,4 +59,14 @@
   };
 </script>
 
-<Table className="global-scoreboard" entries={data.users} {config} />
+{#if data.users.length > 0}
+  <Table className="global-scoreboard" entries={data.users} {config} />
+{:else}
+  <h1 class="disabled">Пока никто не зарегестрировался :(</h1>
+{/if}
+
+<style>
+  .disabled {
+    color: var(--text-inactive);
+  }
+</style>

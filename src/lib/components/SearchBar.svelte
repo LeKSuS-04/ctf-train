@@ -30,7 +30,7 @@
     bind:value={searchQuery}
     on:search={search}
   />
-  <button on:click={search}><Fa icon={faMagnifyingGlass} /></button>
+  <button on:click={search} type="button"><Fa icon={faMagnifyingGlass} /></button>
 </section>
 
 <style>
@@ -47,6 +47,7 @@
   .searchbar #search {
     width: 100%;
     padding: 0.4em 0.6em;
+    margin: 0;
     outline: none;
     border: 2px var(--surface) solid;
     border-radius: 0.4em;

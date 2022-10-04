@@ -74,8 +74,8 @@ form {
 form label {
   line-height: 2;
 }
-form input,
-form textarea {
+input,
+textarea {
   margin-bottom: 1em;
   padding: 0.8rem 0.6rem;
   width: calc(100% - 1.2em - 4px);
@@ -85,17 +85,17 @@ form textarea {
   background-color: transparent;
   outline: none;
 }
-form input::placeholder,
-form textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: var(--text-inactive);
 }
-form input:focus,
-form textarea:focus {
+input:focus,
+textarea:focus {
   transition-duration: 200ms;
   color: var(--text-accent);
   border-color: var(--primary);
 }
-form textarea {
+textarea {
   resize: vertical;
 }
 input:-webkit-autofill, 		/* HACK: this works, but is kinda dirty */
@@ -116,7 +116,7 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-form button {
+button {
   width: 100%;
   margin: 0;
   margin-top: 1em;
@@ -128,7 +128,11 @@ form button {
   border-radius: 0.4em;
   padding: 0.8em 0.6em;
 }
-form button:hover {
+button:disabled {
+  background-color: var(--background-accent);
+  color: var(--text-inactive);
+}
+button:hover:enabled {
   transition-duration: 200ms;
   color: var(--background);
   background-color: var(--primary);

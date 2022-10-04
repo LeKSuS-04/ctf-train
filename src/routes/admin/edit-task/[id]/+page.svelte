@@ -154,30 +154,11 @@
   }
 
   .action-buttons {
-    width: 100%;
     padding-bottom: 1em;
-  }
-  .action-buttons button {
-    width: 100%;
-    margin: 0;
-    margin-top: 1em;
-    padding: 0;
-    background-color: var(--surface);
-    color: var(--text);
-    outline: none;
-    border: none;
-    border-radius: 0.4em;
-    padding: 0.8em 0.6em;
   }
   .action-buttons button.active {
     color: var(--background);
     background-color: var(--primary);
-  }
-  .action-buttons button:hover {
-    transition-duration: 200ms;
-    color: var(--background);
-    background-color: var(--primary);
-    cursor: pointer;
   }
   .action-buttons button.active:hover {
     background-color: var(--primary-accent);

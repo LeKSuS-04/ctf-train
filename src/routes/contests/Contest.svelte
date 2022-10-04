@@ -30,7 +30,7 @@
   a.contest {
     position: relative;
     margin: 1em;
-    width: calc(100% - 4em);
+    width: calc(100% - 2em);
     max-width: 1024px;
     background: var(--surface);
     border-radius: 1em;

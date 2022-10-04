@@ -29,8 +29,6 @@ export async function load({ locals }) {
       cost: true,
       category: true,
       description: true,
-      isActive: true,
-      solves: true
     }
   });
 

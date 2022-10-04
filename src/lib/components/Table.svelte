@@ -1,6 +1,7 @@
 <script>
   import Fa from "svelte-fa/src/fa.svelte";
   import { goto } from "$app/navigation";
+  import { enhance } from "$app/forms";
 
   export let entries;
   export let config;
@@ -59,7 +60,7 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 
-<table class={className}>
+<table class={`info-table ${className}`}>
   <thead>
     <tr>
       {#if config.placement}
@@ -94,13 +95,26 @@
             {entry[field.realName]}
           </td>
         {/each}
+
+        {#if config.actions}
+          <td class="actions" on:click|stopPropagation>
+            {#each config.actions as action}
+              <form action={action.link} method="POST" use:enhance>
+                <input name="id" id="id" value={entry.id} hidden />
+                <button style:--fade-color={action.fadeColor ?? "var(--primary)"}>
+                  <Fa icon={action.icon} />
+                </button>
+              </form>
+            {/each}
+          </td>
+        {/if}
       </tr>
     {/each}
   </tbody>
 </table>
 
 <style>
-  table {
+  table.info-table {
     display: block;
     width: 100%;
     max-width: 1024px;
@@ -154,5 +168,22 @@
   }
   tr:hover .normal {
     display: none;
+  }
+
+  td.actions {
+    background-color: var(--background);
+    padding-left: 0.2em;
+  }
+  td.actions:hover {
+    cursor: initial;
+  }
+  td.actions button {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    background-color: unset;
+  }
+  td.actions button:hover {
+    color: var(--fade-color);
+    background-color: var(--surface);
   }
 </style>

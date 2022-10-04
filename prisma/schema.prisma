@@ -60,9 +60,9 @@ model Solve {
   @@map("solves")
   @@id([userId, taskId])
   userId Int      @map("user_id")
-  user   User     @relation(fields: [userId], references: [id])
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   taskId Int      @map("task_id")
-  task   Task     @relation(fields: [taskId], references: [id])
+  task   Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
   time   DateTime @default(now())
 }
 
@@ -70,16 +70,16 @@ model GroupsUsers {
   @@map("groups_users")
   @@id([userId, groupId])
   userId  Int   @map("user_id")
-  user    User  @relation(fields: [userId], references: [id])
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   groupId Int   @map("group_id")
-  group   Group @relation(fields: [groupId], references: [id])
+  group   Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
 }
 
 model ContestsTasks {
   @@map("contests_tasks")
   @@id([contestId, taskId])
   contestId Int     @map("contest_id")
-  contest   Contest @relation(fields: [contestId], references: [id])
+  contest   Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
   taskId    Int     @map("task_id")
-  task      Task    @relation(fields: [taskId], references: [id])
+  task      Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
 }

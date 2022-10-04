@@ -13,7 +13,7 @@
   });
 </script>
 
-{#if categories.length > 0}
+{#if categories.size > 0}
   {#each [...categories] as category}
     <section>
       <h1>{category}</h1>

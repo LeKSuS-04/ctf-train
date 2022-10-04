@@ -7,7 +7,7 @@
 
   export let data;
 
-  let searchKeys = ["name", "category", "description", "flag", "cost"];
+  let searchKeys = ["name", "category", "description", "cost", "flag"];
   let filteredTasks = data.tasks;
   function handleSearch(event) {
     filteredTasks = event.detail.data;

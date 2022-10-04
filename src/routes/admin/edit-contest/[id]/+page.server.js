@@ -34,6 +34,7 @@ async function getContest(idString, fetchTasks = false) {
         cost: true,
         name: true,
         description: true,
+        flag: true,
         isActive: true
       },
       where: {

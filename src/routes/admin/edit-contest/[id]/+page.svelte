@@ -26,7 +26,7 @@
   }
 
   const showTaskLimit = 5;
-  const searchKeys = ["id", "name", "category", "description", "cost"];
+  const searchKeys = ["id", "name", "category", "description", "cost", "flag"];
   let selectedTaskId = null;
   let filteredTasks = data.tasks;
   function handleSearch(event) {

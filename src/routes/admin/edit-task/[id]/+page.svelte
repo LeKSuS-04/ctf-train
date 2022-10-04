@@ -28,6 +28,7 @@
         id="name"
         type="text"
         placeholder="Task name"
+        autocomplete="off"
         bind:value={data.task.name}
         on:input={userInput}
       />
@@ -37,6 +38,7 @@
           id="category"
           type="text"
           placeholder="Misc"
+          autocomplete="off"
           bind:value={data.task.category}
           on:input={userInput}
         />
@@ -46,6 +48,7 @@
           id="cost"
           type="number"
           placeholder="0"
+          autocomplete="off"
           bind:value={data.task.cost}
           on:input={userInput}
         />
@@ -59,7 +62,15 @@
         bind:value={data.task.description}
         on:input={userInput}
       />
-      <input name="flag" id="flag" type="text" bind:value={data.task.flag} on:input={userInput} />
+      <input
+        name="flag"
+        id="flag"
+        type="text"
+        placeholder="flag&#123;...&#125;"
+        autocomplete="off"
+        bind:value={data.task.flag}
+        on:input={userInput}
+      />
     </form>
   {:else}
     <h1>{data.task.name}</h1>
@@ -81,15 +92,16 @@
       {/if}
     </form>
     <form action="?/toggleActivate" method="POST" use:enhance>
-      <button class:active={data.task.isActive}
-        >{data.task.isActive ? "Активен" : "Спрятан"}</button
-      >
+      <button class:active={data.task.isActive}>
+        {data.task.isActive ? "Активен" : "Спрятан"}
+      </button>
     </form>
     <form action="?/delete" method="POST" use:enhance>
       <button class="delete">Удалить</button>
     </form>
   </section>
 
+  <!-- svelte-ignore a11y-missing-attribute -->
   <span class="go-back"><a on:click|preventDefault={goBack}>Вернуться обратно</a></span>
 </section>
 
@@ -142,8 +154,8 @@
   }
 
   .action-buttons {
-    display: inline-block;
     width: 100%;
+    padding-bottom: 1em;
   }
   .action-buttons button {
     width: 100%;
@@ -182,5 +194,4 @@
   .go-back a:hover {
     cursor: pointer;
   }
-
 </style>

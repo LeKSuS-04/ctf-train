@@ -70,8 +70,8 @@ export const actions = {
       }
     });
 
-    throw redirect(303, '/admin/tasks');
-  },
+    throw redirect(303, "/admin/tasks");
+  }
 };
 
 export async function load({ locals, params }) {

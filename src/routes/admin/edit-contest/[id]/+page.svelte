@@ -161,7 +161,10 @@
       <SearchBar data={data.tasks} keys={searchKeys} on:searchComplete={handleSearch} />
 
       {#each filteredTasks.slice(0, showTaskLimit) as task}
-        <div class={`task-info ${task.id == selectedTaskId ? 'selected' : ''}`} on:click={getTaskClickEvent(task.id)}>
+        <div
+          class={`task-info ${task.id == selectedTaskId ? "selected" : ""}`}
+          on:click={getTaskClickEvent(task.id)}
+        >
           <span class="name">{task.name}</span>
           <span class="category-cost">
             <span class="category">{task.category}</span> /
@@ -172,9 +175,8 @@
       {#if filteredTasks.length > showTaskLimit}
         <p class="ellipsis">...</p>
       {:else if filteredTasks.length === 0}
-        <p class="nothing-found">Таски не найдены</p> 
+        <p class="nothing-found">Таски не найдены</p>
       {/if}
-
 
       <form action="?/addTask" method="POST" use:enhance={addTask}>
         <input name="id" id="id" value={selectedTaskId} hidden />

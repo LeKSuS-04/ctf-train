@@ -1,11 +1,17 @@
 <script>
   import { enhance } from "$app/forms";
   import Fa from "svelte-fa/src/fa.svelte";
-  import { faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons";
+  import { faPlus } from "@fortawesome/free-solid-svg-icons";
   import Table from "$lib/components/Table.svelte";
+  import SearchBar from "$lib/components/SearchBar.svelte";
 
   export let data;
-  console.log(data);
+
+  let searchKeys = ["name", "category", "description", "flag", "cost"];
+  let filteredTasks = data.tasks;
+  function handleSearch(event) {
+    filteredTasks = event.detail.data;
+  }
 
   const config = {
     templateLink: "/admin/edit-task/{}",
@@ -55,11 +61,10 @@
     <form action="?/create" method="POST" use:enhance>
       <button><Fa icon={faPlus} /></button>
     </form>
-    <input id="search" type="text" placeholder="Search..." />
-    <button><Fa icon={faMagnifyingGlass} /></button>
+    <SearchBar data={data.tasks} keys={searchKeys} on:searchComplete={handleSearch} />
   </section>
 
-  <Table className="admin-task-list" entries={data.tasks} {config} />
+  <Table className="admin-task-list" entries={filteredTasks} {config} />
 </section>
 
 <style>
@@ -73,27 +78,12 @@
   .searchbar {
     width: 100%;
     max-width: 768px;
+    margin-bottom: 0.5em;
     display: flex;
     flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
     gap: 1em;
-  }
-  .searchbar #search {
-    width: 100%;
-    padding: 0.4em 0.6em;
-    outline: none;
-    border: 2px var(--surface) solid;
-    border-radius: 0.4em;
-    font-size: 1.3em;
-    background-color: var(--surface);
-    color: var(--text);
-  }
-  section #search:focus {
-    border-color: var(--primary);
-  }
-  section #search::placeholder {
-    color: var(--text-inactive);
   }
   .searchbar form,
   .searchbar button {

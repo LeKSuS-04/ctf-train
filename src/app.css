@@ -53,15 +53,12 @@ h2 {
   font-size: 1.5rem;
 }
 
-pre {
-  font-size: 16px;
+p code {
+  padding: 0.2em;
+  border-radius: 0.2em;
   font-family: var(--font-mono);
-  background-color: rgba(255, 255, 255, 0.45);
-  border-radius: 3px;
-  box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-  padding: 0.5em;
-  overflow-x: auto;
-  color: var(--text-color);
+  background-color: var(--surface);
+  color: var(--primary);
 }
 
 input,
@@ -76,9 +73,10 @@ form {
 form label {
   line-height: 2;
 }
-form input {
+form input,
+form textarea {
   margin-bottom: 1em;
-  padding: 0.8em 0.6em;
+  padding: 0.8rem 0.6rem;
   width: calc(100% - 1.2em - 4px);
   border: 2px var(--surface) solid;
   border-radius: 0.4em;
@@ -86,17 +84,30 @@ form input {
   background-color: transparent;
   outline: none;
 }
-form input::placeholder {
-  color: var(--surface);
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--text-inactive);
 }
-form input:focus {
+form input:focus,
+form textarea:focus {
   transition-duration: 200ms;
   color: var(--text-accent);
   border-color: var(--primary);
 }
+form textarea {
+  resize: vertical;
+}
 input:-webkit-autofill, 		/* HACK: this works, but is kinda dirty */
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 form button {
   width: 100%;

@@ -16,7 +16,7 @@
 <style>
   nav {
     background-color: var(--background-accent);
-    width: 100vw;
+    width: calc(100vw - 1em);
     margin-bottom: 1em;
   }
   ul {

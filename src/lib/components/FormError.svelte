@@ -3,7 +3,7 @@
   import { quintOut } from "svelte/easing";
 </script>
 
-<span class="error" transition:slide={{ duration: 300, easing: quintOut }}>
+<span class="error" in:slide={{ duration: 300, easing: quintOut }}>
   <slot />
 </span>
 

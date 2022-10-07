@@ -8,6 +8,7 @@
       <li><a href="/">Главная</a></li>
       {#if $user}
         <li><a href="/contests">Контесты</a></li>
+        <li><a href="/tasks">Таски</a></li>
       {/if}
       <li><a href="/score">Скорборд</a></li>
       <li><a href="/groups">Группы</a></li>

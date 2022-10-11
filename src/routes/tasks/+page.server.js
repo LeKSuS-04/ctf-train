@@ -9,6 +9,8 @@ export async function load({ locals }) {
       id: true,
       name: true,
       cost: true,
+      category: true,
+      description: true,
       solves: {
         select: {
           user: {

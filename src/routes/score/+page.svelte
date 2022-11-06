@@ -62,7 +62,7 @@
 {#if data.users.length > 0}
   <Table className="global-scoreboard" entries={data.users} {config} />
 {:else}
-  <h1 class="disabled">Пока никто не зарегестрировался :(</h1>
+  <h1 class="disabled">Пока никто не зарегистрировался :(</h1>
 {/if}
 
 <style>

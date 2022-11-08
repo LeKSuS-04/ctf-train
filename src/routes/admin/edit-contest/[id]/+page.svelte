@@ -85,7 +85,7 @@
 <section class="contest-edit">
   <section class="contest">
     <form id="contest-form" action="?/save" method="POST" use:enhance={saveContest}>
-      {#if editing}
+      <section style:display={editing ? "unset" : "none"}>
         <input
           id="name"
           name="name"
@@ -105,10 +105,12 @@
           bind:value={data.contest.description}
           on:input={userInput}
         />
-      {:else}
+      </section>
+
+      <section style:display={editing ? "none" : "unset"}>
         <h2>{data.contest.name}</h2>
         <p>{data.contest.description}</p>
-      {/if}
+      </section>
     </form>
 
     <section class="stats">

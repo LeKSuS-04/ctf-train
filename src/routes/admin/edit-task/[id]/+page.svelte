@@ -21,64 +21,70 @@
 </script>
 
 <section class="main">
-  {#if editing}
-    <form id="task-form" action="?/save" method="POST" use:enhance={saveTask}>
+  <form
+    id="task-form"
+    action="?/save"
+    style:display={editing ? "unset" : "none"}
+    method="POST"
+    use:enhance={saveTask}
+  >
+    <input
+      name="name"
+      id="name"
+      type="text"
+      placeholder="Task name"
+      autocomplete="off"
+      bind:value={data.task.name}
+      on:input={userInput}
+    />
+    <section class="category-cost">
       <input
-        name="name"
-        id="name"
+        name="category"
+        id="category"
         type="text"
-        placeholder="Task name"
+        placeholder="Misc"
         autocomplete="off"
-        bind:value={data.task.name}
+        bind:value={data.task.category}
         on:input={userInput}
       />
-      <section class="category-cost">
-        <input
-          name="category"
-          id="category"
-          type="text"
-          placeholder="Misc"
-          autocomplete="off"
-          bind:value={data.task.category}
-          on:input={userInput}
-        />
-        /
-        <input
-          name="cost"
-          id="cost"
-          type="number"
-          placeholder="0"
-          autocomplete="off"
-          bind:value={data.task.cost}
-          on:input={userInput}
-        />
-      </section>
-      <textarea
-        name="description"
-        id="description"
-        type="text"
-        placeholder="Task description"
-        rows="10"
-        bind:value={data.task.description}
-        on:input={userInput}
-      />
+      /
       <input
-        name="flag"
-        id="flag"
-        type="text"
-        placeholder="flag&#123;...&#125;"
+        name="cost"
+        id="cost"
+        type="number"
+        placeholder="0"
         autocomplete="off"
-        bind:value={data.task.flag}
+        bind:value={data.task.cost}
         on:input={userInput}
       />
-    </form>
-  {:else}
+    </section>
+    <textarea
+      name="description"
+      id="description"
+      type="text"
+      placeholder="Task description"
+      rows="10"
+      bind:value={data.task.description}
+      on:input={userInput}
+    />
+    <input
+      name="flag"
+      id="flag"
+      type="text"
+      placeholder="flag&#123;...&#125;"
+      autocomplete="off"
+      bind:value={data.task.flag}
+      on:input={userInput}
+    />
+  </form>
+
+  <section style:display={editing ? "none" : "unset"}>
     <h1>{data.task.name}</h1>
     <h2 class="category-cost">
       {data.task.category} / <span class="cost">{data.task.cost}</span>
     </h2>
     <p class="description">{@html data.task.description}</p>
-  {/if}
+  </section>
 
   <section class="action-buttons">
     <button on:click={() => (editing = !editing)}>

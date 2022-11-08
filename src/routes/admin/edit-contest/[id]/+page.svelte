@@ -25,7 +25,6 @@
     applyAction();
   }
 
-  const showTaskLimit = 5;
   const searchKeys = ["id", "name", "category", "description", "cost", "flag"];
   let selectedTaskId = null;
   let filteredTasks = data.tasks;
@@ -162,23 +161,23 @@
       <h2>Добавить таск</h2>
       <SearchBar data={data.tasks} keys={searchKeys} on:searchComplete={handleSearch} />
 
-      {#each filteredTasks.slice(0, showTaskLimit) as task}
-        <div
-          class={`task-info ${task.id == selectedTaskId ? "selected" : ""}`}
-          on:click={getTaskClickEvent(task.id)}
-        >
-          <span class="name">{task.name}</span>
-          <span class="category-cost">
-            <span class="category">{task.category}</span> /
-            <span class="cost">{task.cost}</span>
-          </span>
-        </div>
-      {/each}
-      {#if filteredTasks.length > showTaskLimit}
-        <p class="ellipsis">...</p>
-      {:else if filteredTasks.length === 0}
-        <p class="nothing-found">Таски не найдены</p>
-      {/if}
+      <div class="tasks">
+        {#each filteredTasks as task}
+          <div
+            class={`task-info ${task.id == selectedTaskId ? "selected" : ""}`}
+            on:click={getTaskClickEvent(task.id)}
+          >
+            <span class="name">{task.name}</span>
+            <span class="category-cost">
+              <span class="category">{task.category}</span> /
+              <span class="cost">{task.cost}</span>
+            </span>
+          </div>
+        {/each}
+        {#if filteredTasks.length === 0}
+          <p class="nothing-found">Таски не найдены</p>
+        {/if}
+      </div>
 
       <form action="?/addTask" method="POST" use:enhance={addTask}>
         <input name="id" id="id" value={selectedTaskId} hidden />
@@ -288,6 +287,18 @@
     padding-left: 1em;
   }
 
+  .tasks {
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .tasks::-webkit-scrollbar,
+  .tasks::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .tasks::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 0.4em;
+  }
   .add-task .task-info {
     background-color: var(--surface);
     display: flex;
@@ -319,12 +330,8 @@
   .add-task .task-info .cost {
     font-family: var(--font-mono);
   }
-  .add-task p.nothing-found,
-  .add-task p.ellipsis {
+  .add-task p.nothing-found {
     text-align: center;
-  }
-  .add-task p.ellipsis {
-    font-family: var(--font-mono);
   }
   .add-task p.nothing-found {
     color: var(--text-inactive);

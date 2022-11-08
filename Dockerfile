@@ -11,7 +11,6 @@ RUN npm audit fix
 RUN npx prisma generate
 
 # Build application
-ENV ORIGIN=http://localhost:3000
 RUN npm run build
 
 # HACK: initialize

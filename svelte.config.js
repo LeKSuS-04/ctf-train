@@ -7,7 +7,7 @@ const config = {
 
     trailingSlash: "never",
     csrf: {
-      checkOrigin: true
+      checkOrigin: false
     }
   }
 };

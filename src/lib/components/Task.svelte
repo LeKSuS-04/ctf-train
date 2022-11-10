@@ -7,6 +7,9 @@
   export let cost;
   export let isSolved;
   export let solves;
+
+  export let category;
+  export let showCategory;
 </script>
 
 <a href="/task/{id}" class="base" class:is-solved={isSolved}>
@@ -16,6 +19,11 @@
     <span>{cost}</span>
     <Fa icon={faCoins} />
   </div>
+  {#if showCategory}
+    <div class="category">
+      <span>{category}</span>
+    </div>
+  {/if}
   <div class="solves">
     <span>{solves}</span>
     <Fa icon={faUser} />
@@ -59,17 +67,20 @@
   }
 
   .cost,
+  .category,
   .solves {
+    position: absolute;
     font-size: 0.9em;
+    bottom: 1em;
   }
   .cost {
-    position: absolute;
-    bottom: 1em;
     left: 1em;
   }
+  .category {
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .solves {
-    position: absolute;
-    bottom: 1em;
     right: 1em;
   }
 

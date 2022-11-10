@@ -31,7 +31,7 @@
   </section>
   <div class="task-box">
     {#each filteredTasks as task}
-      <Task {...task} />
+      <Task {...task} showCategory={true} />
     {/each}
   </div>
 </section>

@@ -19,7 +19,7 @@
       <h1>{category}</h1>
       <div class="task-box">
         {#each tasksByCategories[category] as task}
-          <Task {...task} />
+          <Task {...task} showCategory={false} />
         {/each}
       </div>
     </section>

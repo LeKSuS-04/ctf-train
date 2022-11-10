@@ -25,12 +25,14 @@ export async function load({ locals }) {
   const allTasks = await prisma.task.findMany({
     select: {
       id: true,
-      cost: true
+      cost: true,
+      isActive: true
     }
   });
   allTasks.forEach((task) => {
     taskIdToInfo.set(task.id, {
       cost: task.cost,
+      isActive: task.isActive,
       isSolved: solvedIds.includes(task.id)
     });
   });
@@ -40,6 +42,7 @@ export async function load({ locals }) {
     contest.unsolved = [];
     contest.tasks.forEach((task) => {
       const taskInfo = taskIdToInfo.get(task.taskId);
+      if (!taskInfo.isActive) return;
       if (taskInfo.isSolved) {
         contest.solved.push(taskInfo);
       } else {

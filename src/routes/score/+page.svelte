@@ -12,9 +12,10 @@
         shownName: "Юзер",
         style: {
           class: "username",
-          width: "28%",
+          width: "calc(30% - var(--place-width))",
+          hideOverflow: true,
           onMobile: {
-            width: "70%"
+            width: "calc(70% - var(--place-width))"
           }
         }
       },
@@ -23,7 +24,7 @@
         shownName: "ФИО",
         style: {
           class: "fio",
-          width: "70%",
+          width: "60%",
           hideOverflow: true,
           onMobile: {
             hidden: true
@@ -36,7 +37,11 @@
         style: {
           class: "score",
           monospace: true,
-          textAlign: "center"
+          width: "10%",
+          textAlign: "center",
+          onMobile: {
+            width: "30%"
+          }
         }
       }
     ],

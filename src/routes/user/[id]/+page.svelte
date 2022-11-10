@@ -12,7 +12,11 @@
         shownName: "Категория",
         style: {
           textAlign: "center",
-          monospace: true
+          monospace: true,
+          width: "10%",
+          onMobile: {
+            hidden: true
+          }
         }
       },
       {
@@ -21,13 +25,20 @@
         class: "cost",
         style: {
           textAlign: "center",
-          monospace: true
+          monospace: true,
+          width: "15%",
+          onMobile: {
+            width: "35%"
+          }
         }
       },
       {
         realName: "name",
         shownName: "Название",
-        class: "name"
+        class: "name",
+        style: {
+          width: "1fr"
+        }
       },
       {
         realName: "time",
@@ -35,7 +46,11 @@
         style: {
           class: "time",
           textAlign: "center",
-          monospace: true
+          monospace: true,
+          width: "22%",
+          onMobile: {
+            width: "30%"
+          }
         }
       }
     ],
@@ -48,22 +63,22 @@
   <h2>{data.solvedSum} поинтов <TextSep /> {data.solves.length} флагов</h2>
 
   {#if data.solves.length > 0}
-    <Table className="tasks-solved" entries={data.solves} {config} />
+    <Table entries={data.solves} {config} />
   {:else}
     <h2 class="disabled">Еще не решено ни одного таска</h2>
   {/if}
 </section>
 
 <style>
+  section {
+    width: 100%;
+    max-width: 1024px;
+  }
   h2 {
     text-align: center;
   }
 
   .disabled {
     color: var(--text-inactive);
-  }
-
-  :global(.tasks-solved td.time) {
-    padding: 0 1em;
   }
 </style>

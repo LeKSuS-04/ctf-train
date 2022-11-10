@@ -21,7 +21,7 @@
         shownName: "Название",
         style: {
           class: "name",
-          width: "20%",
+          width: "15%",
           hideOverflow: true
         }
       },
@@ -29,7 +29,7 @@
         realName: "category",
         shownName: "Категория",
         style: {
-          width: "5%",
+          width: "15%",
           textAlign: "center",
           monospace: true
         }
@@ -38,7 +38,7 @@
         realName: "cost",
         shownName: "Стоимость",
         style: {
-          width: "5%",
+          width: "10%",
           textAlign: "center",
           monospace: true
         }
@@ -47,7 +47,7 @@
         realName: "description",
         shownName: "Описание",
         style: {
-          width: "70%",
+          width: "1fr",
           textAlign: "center",
           hideOverflow: true
         }

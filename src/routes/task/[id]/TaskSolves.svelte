@@ -12,10 +12,10 @@
         shownName: "Юзер",
         style: {
           class: "username",
-          width: "26%",
+          width: "calc(25% - var(--place-width))",
           hideOverflow: true,
           onMobile: {
-            width: "50%"
+            width: "calc(50% - var(--place-width))"
           }
         }
       },
@@ -25,7 +25,7 @@
         hideOverflow: true,
         style: {
           class: "fio",
-          width: "44%",
+          width: "1fr",
           hideOverflow: true,
           onMobile: {
             hidden: true
@@ -37,7 +37,7 @@
         shownName: "Время сдачи",
         style: {
           class: "time",
-          width: "40%",
+          width: "31%",
           monospace: true,
           textAlign: "center",
           onMobile: {

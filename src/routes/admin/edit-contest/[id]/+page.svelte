@@ -50,7 +50,7 @@
         shownName: "Название",
         style: {
           class: "name",
-          width: "100%",
+          width: "50%",
           hideOverflow: true
         }
       },
@@ -59,7 +59,8 @@
         shownName: "Категория",
         style: {
           monospace: true,
-          textAlign: "center"
+          textAlign: "center",
+          width: "20%",
         }
       },
       {
@@ -67,7 +68,8 @@
         shownName: "Стоимость",
         style: {
           monospace: true,
-          textAlign: "center"
+          textAlign: "center",
+          width: "calc(30% - var(--action-width))",
         }
       }
     ],
@@ -282,9 +284,6 @@
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: 2em;
-  }
-  :global(.contest-task-list .name) {
-    padding-left: 1em;
   }
 
   .tasks {

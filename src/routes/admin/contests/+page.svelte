@@ -20,7 +20,8 @@
         realName: "name",
         shownName: "Название",
         style: {
-          width: "40%"
+          width: "40%",
+          hideOverflow: true
         }
       },
       {

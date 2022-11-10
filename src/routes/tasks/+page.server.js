@@ -23,6 +23,9 @@ export async function load({ locals }) {
     },
     where: {
       isActive: true
+    },
+    orderBy: {
+      id: "desc"
     }
   });
 

@@ -7,19 +7,37 @@
   export let config;
   export let className;
 
+  // This is binded to innerWidth property of svelte:window object
   let windowWidth;
 
+  // Reactive boolean value, that shows if we're on mobile screen, based on
+  // width of current screen
   $: onMobile = windowWidth <= 720;
 
+  /**
+   * Pytohn-like string formatting to transofrm url templates with ids
+   * @param {String} string
+   * @param {String} data
+   */
   function formatString(string, data) {
     return string.replace(/{}/g, data);
   }
 
-  $: getGridTemplateRows = () => {
+  // Reactive function, that returns string, which represents grid-template-rows
+  // css property of table with widths, specified by table configuration
+  $: getGridTemplateColumns = () => {
+    // Column widths as strings
     const elements = [];
+
+    // If placement column is enabled, include it into result
     if (config.placement) {
       elements.push("var(--place-width)");
     }
+
+    // Iterate over all table fields, taking into a count screen width:
+    // - Don't add field if it is hidden
+    // - Add it's width if it is specified
+    // - Add default "1fr" value, if width for this column isn't specified
     for (const { style } of config.fields) {
       if (onMobile && style?.onMobile?.hidden) {
         continue;
@@ -33,17 +51,28 @@
         elements.push("1fr");
       }
     }
+
+    // If table contains actions, add column for each of them
     if (config.actions) {
       for (let i = 0; i < config.actions.length; i++) {
         elements.push("var(--action-width)");
       }
     }
+
+    // Format elements array to form valid css value
     return elements.join(" ");
   };
 
+  // Reactive function, which returns string, which represents css style for
+  // value of current cell, based on custom "style" object
   $: parseStyle = (style) => {
+    // If style is empty, return empty string: empty css ruleset
     if (!style) return "";
 
+    /**
+     * Parses simple props, without taking into a count onMobile property
+     * @param styleProps
+     */
     function parseSimpleProps(styleProps) {
       let styleString = "";
 
@@ -70,6 +99,9 @@
       return styleString;
     }
 
+    // Add parsed props to result. If on mobile, additionaly add styles from
+    // onMobile property, which would take priority over others, since they are
+    // later in css rulest 
     let result = parseSimpleProps(style);
     if (onMobile && style.onMobile) {
       result = result + parseSimpleProps(style.onMobile);
@@ -82,7 +114,7 @@
 <svelte:window bind:innerWidth={windowWidth} />
 
 <section class={`table ${className}`}>
-  <header style:grid-template-columns={getGridTemplateRows(config.fields)}>
+  <header style:grid-template-columns={getGridTemplateColumns(config.fields)}>
     {#if config.placement}
       <div class="place" style={config.placement.style}>#</div>
     {/if}
@@ -95,7 +127,7 @@
       {@const order = i + 1}
       <a
         href={formatString(config.templateLink, entry.id)}
-        style:grid-template-columns={getGridTemplateRows(config.fields)}
+        style:grid-template-columns={getGridTemplateColumns(config.fields)}
         class="row row-{order % 2}"
       >
         {#if config.placement}

@@ -3,11 +3,13 @@ import { error } from "@sveltejs/kit";
 import { formatTime } from "$lib/time";
 
 export async function load({ params }) {
+  // Throw 404 if user ID is invalid
   const userId = Number(params.id);
   if (isNaN(userId)) {
     throw error(404);
   }
 
+  // Fetch user from db
   const profile = await prisma.user.findUnique({
     select: {
       username: true,
@@ -17,10 +19,12 @@ export async function load({ params }) {
       id: userId
     }
   });
+  // Throw 404 if id is valid, but user with such id doesn't exist
   if (profile === null) {
     throw error(404);
   }
 
+  // Fetch solves for this user, sort them from oldest to newest
   const solves = await prisma.solve.findMany({
     select: {
       task: {
@@ -42,6 +46,10 @@ export async function load({ params }) {
     }
   });
 
+  // Process solves. We need to:
+  // 1. Remove solves from deactivated tasks
+  // 2. Count total amount of points. Note that we give users points
+  //    even for inactive tasks.
   const activeSolves = [];
   let solvedSum = 0;
   solves.forEach(({ task, time }) => {

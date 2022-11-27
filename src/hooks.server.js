@@ -19,8 +19,17 @@ export const handle = async ({ event, resolve }) => {
   }
 
   const response = await resolve(event);
-  if (!event.locals.user) {
-    response.headers.set("set-cookie", serialize("session", "", { expires: new Date(Date.now() - 3600) }));
+
+  // Remove "session" cookie if it is invalid
+  // If user is signing in, at the moment of proccessing request cookies
+  // will still be invalid, but it shouldn't be overwritten, so we need to
+  // check, if user is logging in.
+  const loggingIn = response.headers.get("Set-Cookie")?.includes("session");
+  if (!loggingIn && !event.locals.user) {
+    response.headers.set(
+      "Set-Cookie",
+      serialize("session", "", { expires: new Date(Date.now() - 3600) })
+    );
   }
 
   return response;

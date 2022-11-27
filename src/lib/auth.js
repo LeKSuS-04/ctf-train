@@ -42,12 +42,17 @@ export async function userFromToken(token) {
       maxAge: "90d"
     };
     const data = jwt.verify(token, secretKey, options);
-    const user = prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         id: data.uid
       }
     });
-    return user;
+
+    if (user === undefined || !user.isActive) {
+      return null;
+    }
+
+    return makeApiResponse(user);
   } catch (e) {
     const expectedErrors = [jwt.TokenExpiredError, jwt.JsonWebTokenError];
 
